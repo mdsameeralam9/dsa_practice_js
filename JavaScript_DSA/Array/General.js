@@ -12,6 +12,7 @@
 11. removeDublicate 
 12.intersectionOfArray
 13. groupAnagrams
+14. merge array from object from two array with unique Object id
 
 */}
 
@@ -560,3 +561,43 @@ console.log(formatList(["apple", "banana", "apple", "banana", "", "moring"]))
 // 'apple, apple and banana'
 // ["apple"] => 'apple'
 // ["apple", "banana"] => 'apple and banana'
+//---------------------------------------------------------------------------------------
+
+// 14. merge Array with unique object id
+function mergeData(arr1, arr2) {
+  // Your implementation;
+
+  const uniqObj = new Map();
+
+  for(const obj of arr1){
+    uniqObj.set(obj.id, {...obj})
+  }
+
+  console.log(uniqObj);
+  for(const obj of arr2){
+    if(uniqObj.has(obj.id)){
+      uniqObj.set(obj.id, {...uniqObj.get(obj.id),...obj})
+    }else {
+      uniqObj.set(obj.id, {...obj})
+    }
+  }
+
+  return Array.from(uniqObj.values())
+}
+
+const array1 = [
+  { id: 1, name: "Alice", age: 25 },
+  { id: 2, name: "Bob", age: 30, educ: "15th" },
+  { id: 3, name: "Charlie", age: 22 }
+];
+
+const array2 = [
+  { id: 3, name: "David", age: 28 },
+  { id: 1, name: "Eva", age: 26, school: "cps" },
+  { id: 4, name: "Frank", age: 31 }
+];
+
+console.log(mergeData(array1, array2))
+//--------------------------------------------------------------------------
+
+// 15.

@@ -10,6 +10,7 @@
  9. longestRepeatCharacterFromString
  10. longestPalindromeBrute
  11. find all anagrams of a pattern in a given string
+ 12. splitPath split string and seprate char
 */}
 
 // 1 p_anagram
@@ -515,3 +516,33 @@ function findAnagramsSimple(s, p) {
 
 // Example usage:
 console.log(findAnagramsSimple("cbaebabacd", "abc")); // Output: [0, 6]
+
+// 12. splitPath
+function splitPath(path) {
+  const parts = [];
+  let buffer = '';
+
+  for (let i = 0; i < path.length; i++) {
+    const char = path[i];
+
+    if (char === '.' || char === '[') {
+      if (buffer) {
+        parts.push(buffer);
+        buffer = '';
+      }
+    } else if (char === ']') {
+      if (buffer) {
+        parts.push(buffer);
+        buffer = '';
+      }
+    } else {
+      buffer += char;
+    }
+  }
+
+  if (buffer) parts.push(buffer);
+
+  return parts;
+}
+console.log(splitPath("data.results[1].status[0].type"))
+// [ "data", "results", "1", "status","0", "type"]
