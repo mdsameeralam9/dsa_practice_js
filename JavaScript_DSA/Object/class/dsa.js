@@ -84,3 +84,95 @@ const result = calc.add(10).subtract(2).multiply(3).divide(4).getResult();
 console.log(result); // Output: 6
 
 // 3. cache 
+
+// 4. EventEmitter like node js works
+class EventEmitter {
+    constructor() {
+        this.events = new Map();
+    }
+
+    on(eventName, callback) {
+        if (!this.events.has(eventName)) { // Corrected condition
+            this.events.set(eventName, []);
+        }
+        this.events.get(eventName).push({ callback, once: false });
+    }
+
+    once(eventName, callback) {
+        if (!this.events.has(eventName)) { // Corrected condition
+            this.events.set(eventName, []);
+        }
+        this.events.get(eventName).push({ callback, once: true });
+    }
+
+    off(eventName, callback) {
+        if (!this.events.has(eventName)) return;
+
+        const listeners = this.events.get(eventName).filter(l => l.callback !== callback);
+        this.events.set(eventName, listeners);
+    }
+
+    emit(eventName, ...args) {
+        if (!this.events.has(eventName)) return;
+
+        const listeners = this.events.get(eventName);
+        const remaining = [];
+
+        for (let listener of listeners) {
+            listener.callback(...args);
+            if (!listener.once) { // Corrected condition
+                remaining.push(listener);
+            }
+        }
+
+        this.events.set(eventName, remaining);
+    }
+}
+
+// stack
+class Stack {
+    constructor() {
+        this.arr = [];
+    }
+
+    push(element) {
+        this.arr.push(element);
+    }
+
+    pop() {
+        // Remove and return the top element
+        if (this.isEmpty()) return null;
+        return this.arr.pop();
+    }
+
+    peek() {
+        // Return the top element without removing it
+        if (this.isEmpty()) return null;
+        return this.arr[this.arr.length - 1];
+    }
+
+    isEmpty() {
+        // Check if the stack is empty
+        return this.arr.length === 0;
+    }
+
+    size() {
+        // Return the number of elements in the stack
+        return this.arr.length;
+    }
+
+    clear() {
+        // Remove all elements from the stack
+        this.arr = [];
+    }
+}
+
+const stack = new Stack();
+stack.push(10);
+stack.push(20);
+console.log(stack.peek());   // 20
+console.log(stack.pop());    // 20
+console.log(stack.size());   // 1
+console.log(stack.isEmpty()); // false
+stack.clear();
+console.log(stack.isEmpty()); // true

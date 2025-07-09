@@ -13,6 +13,8 @@
 12.intersectionOfArray
 13. groupAnagrams
 14. merge array from object from two array with unique Object id
+15. chunkArray
+16. formLargestNumber
 
 */}
 
@@ -600,4 +602,47 @@ const array2 = [
 console.log(mergeData(array1, array2))
 //--------------------------------------------------------------------------
 
-// 15.
+// 15. chunkArray
+function chunkArray(arr, n) {
+  if (arr.length === 0) return [];
+  if (n >= arr.length) return arr;
+  // Your implementation
+  let result = [];
+  let currArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    currArr.push(arr[i]);
+    if(currArr.length === n || i=== arr.length-1){
+      result.push(currArr);
+      currArr = []
+    }
+  }
+
+  return result
+}
+
+
+console.log(chunkArray([1, 2, 3,4,5,4,7,8,33],5))
+
+//16. formLargestNumber
+function formLargestNumber(arr) {
+  // Convert all numbers to strings
+  // const nums = arr.map(num => num.toString());
+  //const nums = arr.map(num => num+'');
+  const nums = arr.map(num => String(num));
+ 
+  // Sort using custom comparator
+  nums.sort((a, b) => {
+    return (b + a).localeCompare(a + b);
+  });
+
+  // Handle edge case: if all numbers are 0
+  if (nums[0] === '0') {
+    return '0';
+  }
+
+  // Join all numbers to form the largest number
+  return nums.join('');
+}
+
+const input = [3, 30, 34, 5, 9];
+console.log(formLargestNumber(input)); // Output: "9534330"

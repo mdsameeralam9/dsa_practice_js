@@ -52,6 +52,28 @@ function throttle(func, delay) {
   };
 }
 
+// part of memization -throttle
+function throttle(fn, delay = 500) {
+  let timerId = null;
+  let lastCall = 0;
+
+  return function (...args) {
+    const now = Date.now();
+
+    if (now - lastCall > delay) {
+      lastCall = now;
+      fn(...args);
+    } else {
+      if (timerId) clearTimeout(timerId);
+
+      timerId = setTimeout(() => {
+        lastCall = Date.now();
+        fn(...args);
+      }, delay - (now - lastCall));
+    }
+  };
+}
+
 const debouncedLog = debounce((msg) => console.log("Logged:", msg), 1000);
 
 debouncedLog("Hello");
