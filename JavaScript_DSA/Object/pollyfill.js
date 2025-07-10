@@ -59,6 +59,27 @@ function objectAssign(target, ...sources) {
   return to;
 }
 
+Object.myAssign = function (target, ...sources) {
+  if (target === null || typeof target !== 'object') {
+    throw new TypeError('Target must be a non-null object');
+  }
+
+  const to = Object(target);
+
+  for (const source of sources) {
+    if (source === null || typeof source !== 'object') continue;
+
+    for (const key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        to[key] = source[key];
+      }
+    }
+  }
+
+  return to;
+};
+
+
 console.log(objectAssign({name: "Sameer", add: "samp"}, {age: 20},2 , 'hello', {add: "mudapue"}, {a: 1, 8:"eight"}));
 console.log(Object.assign(2 , 'hello', {add: "mudapue"}, {a: 1, 8:"eight"}))
 
@@ -93,8 +114,65 @@ freOnk.add.city = "ddddd"
 console.log(freOnk)
 
 
-// 4. 
+// 4. Objec
+function myEntries(obj) {
+  if (obj === null || typeof obj !== "object") {
+    throw new TypeError("Object.entries called on non-object");
+  }
 
+  const result = [];
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      result.push([key, obj[key]]);
+    }
+  }
+
+  return result;
+}
+
+
+//5. json.stringyfy
+function JSONStringify(value) {
+    const seen = new Set();
+
+    function stringify(val) {
+        if (val === null) return "null";
+
+        const type = typeof val;
+
+        if (type === "string") return `"${val}"`; // Strings need to be quoted
+        if (type === "number" || type === "boolean") return String(val);
+        if (type === "function" || type === "undefined") return undefined;
+
+        if (Array.isArray(val)) {
+            const res = val.map(item => {
+                const str = stringify(item);
+                return str === undefined ? "null" : str;
+            });
+            return `[${res.join(",")}]`;
+        }
+
+        if (type === "object") {
+            if (seen.has(val)) throw new TypeError("Converting circular structure to JSON"); // Complete error message
+            seen.add(val);
+
+            const props = Object.entries(val)
+                .map(([key, itemVal]) => { // Renamed 'val' to 'itemVal' for clarity within map
+                    const strVal = stringify(itemVal);
+                    if (strVal === undefined) return undefined;
+                    return `"${key}":${strVal}`; // Key needs to be quoted, then colon, then value
+                })
+                .filter(prop => prop !== undefined); // Filter out undefined properties
+
+            seen.delete(val); // Remove from seen after processing to allow for other references
+
+            return `{${props.join(",")}}`; // Join properties with comma and wrap in curly braces
+        }
+        return undefined; // Fallback for unhandled types
+    }
+
+    return stringify(value);
+}
 
 
 

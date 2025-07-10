@@ -5,7 +5,7 @@
 4. Two Object compare 
 5. get Object from string - getObjectFromString
 6. getStringFromObject
-7. 
+7. groupBy
 */}
 
 // 1. get value from nested Object
@@ -230,4 +230,27 @@ console.log(
 
 // ---------------------------------------------------
 
-// 7. 
+// 7. groupBy
+function groupBy(arr, key) {
+    const result = {};
+    for (const item of arr) {
+        const keyValue = item[key];
+        if (!result.hasOwnProperty(keyValue)) {
+            result[keyValue] = [];
+        }
+        result[keyValue].push(item);
+    }
+    return result;
+}
+
+// Example 1:
+const users = [
+{ name: 'Alice', age: 25 },
+{ name: 'Bob', age: 30 },
+{ name: 'Charlie', age: 25 }
+];
+groupBy(users, 'age');
+// Output: {
+//'25': [{ name: 'Alice', age: 25 }, {
+//'30': [{ name: Bob', age: 30]}]
+// }

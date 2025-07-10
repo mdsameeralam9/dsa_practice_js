@@ -79,3 +79,31 @@ if (!Array.prototype.mySort) {
     return arr;
   };
 }
+
+
+//5.  Array entries
+if (!Array.prototype.entries) {
+  Array.prototype.entries = function () {
+    let index = 0;
+    const arr = this;
+
+    return {
+      next: function () {
+        if (index < arr.length) {
+          return { value: [index, arr[index++]], done: false };
+        } else {
+          return { value: undefined, done: true };
+        }
+      },
+      [Symbol.iterator]: function () {
+        return this;
+      }
+    };
+  };
+}
+
+const colors = ["red", "green", "blue"];
+const iterator = colors.entries();
+for (const [index, color] of iterator) {
+  console.log(index, color);
+}
