@@ -81,7 +81,8 @@ const insertionSort = (arr) => {
         const currentElement = arr[i];
         let startIndex = i-1;
 
-        while(startIndex >= 0 && arr[startIndex] < currentElement){
+        while(startIndex >= 0 && arr[startIndex] > currentElement){ // ascending
+          //while(startIndex >= 0 && arr[startIndex] < currentElement){ // desending
             arr[startIndex+1] =  arr[startIndex]
             startIndex--;
         }
