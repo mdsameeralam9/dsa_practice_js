@@ -15,6 +15,7 @@
 14. merge array from object from two array with unique Object id
 15. chunkArray
 16. formLargestNumber
+17. get all possibel target value
 
 */}
 
@@ -646,3 +647,26 @@ function formLargestNumber(arr) {
 
 const input = [3, 30, 34, 5, 9];
 console.log(formLargestNumber(input)); // Output: "9534330"
+
+
+// get all possibel target value
+function getAllPossibleEqualToTarget(arr, target) {
+    let result = [];
+    let store = {};
+
+    for (let i = 0; i < arr.length; i++) {
+        const elem = arr[i];
+        const requireRest = target - elem;
+
+        if (store[requireRest]) {
+          result.push([requireRest, elem]);
+        }
+
+        //store[elem] = elem;
+        store[elem] = true;
+    }
+
+    return result;
+}
+
+console.log(getAllPossibleEqualToTarget([11, 13, 24, 0, 6, 18, 7, 3, 8, 16, 77, 99, 14, 10], 24));
