@@ -1,43 +1,57 @@
-function checkPasswordStrength(password) {
-  // Initialize score
-  let score = 0;
+// Object
+// map ,weakMap
+// class
+// promise
+// methods
+
+// Before all DSA 
+
+{/**
+    
+1.Given an array, arr[]. Sort the array using bubble sort algorithm
+ 
+ 
+2.Check the given String is Panagram or Not.
+A. Check the string is Panagram or not
+B. If not panagram , then print the missing letters 
+ex: The quick brown fox jumps over the lazy dog.
+Write a program for Panagram Detector.
+* The sentence "The quick brown fox jumps over the lazy dog" contains every single letter in the alphabet. Such sentences are called pangrams.
+* Write a function called "findMissingLetters"  which takes a String `sentence`,  and returns all the letters it is missing. Which prevent it from being a pangram.
+* You should ignore the case of the letters in sentence, and your return should be all lower case letters, in alphabetical order.
+* You should also ignore all non US-ASCII characters.
+ 
+ 
+Remove the duplicate words from the given Sentence.
+Ex:
+a) Input: Good day day bye bye
+output: Good day bye
+ 
+ 
+Question: For the given string such as "aabbbbbcc" print the longest occurring character,index and number of times it occurs.
+Ex: longest occurring character is b and length is 5 at index 2.
+ 
+ 
+Sort an array of 0s, 1s, and 2s in a single pass using two pointers.
+ 
+Given a sorted array arr and an integer k, find the position at which k is present in the array using binary search. Input = [1,2,3,4,5,6],  k = 4
+ 
+1.Given two arrays. Arr1 = {1,2,3,8}, arr2 = {5,6,4,7}. Find a number from each array to be interchanged to reach     a common sum of all elements for both arrays. , Output: {1,5} or {3,7} or {2,6}
+2. find the median of 2 sorted arrays
+3.Reverse String without changing the special character. input : ab#cd%ef@ ,   output : fe#dc%ba@
+4. Given an array of n+1 integers, where each integer is between 1 and n (inclusive), find the duplicate number using binary search
+ 
+ 
+Topics for theory - data structure, which to use when, how actually insertion and deletion works in the data structures, core java concepts, oops concepts and what all technologies you have worked on
+     
+*/}
+
+
+function finDublicate(strng){
   
-    console.log("1",score);
-  // Check length
-  if (password.length >= 8) score += 1;
-  console.log("2",score);
-  if (password.length >= 12) score += 1;
-    console.log("3",score);
-  
-  // Check for different character types
-  if (/[A-Z]/.test(password)) score += 1; // Uppercase
-    console.log("4",score);
-  if (/[a-z]/.test(password)) score += 1; // Lowercase
-    console.log("5",score);
-  if (/[0-9]/.test(password)) score += 1; // Numbers
-    console.log("6",score);
-  if (/[^A-Za-z0-9]/.test(password)) score += 1; // Special characters
-  
-    console.log("7",score);
-  // Determine strength based on score
-  if (score >= 5) return "Strong";
-  if (score >= 3) return "Medium";
-  return "Weak";
 }
 
-// Example usage:
-//console.log(checkPasswordStrength("password"))
-//console.log(checkPasswordStrength("Password123"))
-console.log(checkPasswordStrength("P@ssw0rd123!"))
-// checkPasswordStrength("password") // "Weak"
-// checkPasswordStrength("Password123") // "Medium"
-// checkPasswordStrength("P@ssw0rd123!") // "Strong"
-
-
-
-
-
-
+console.log(finDublicate('ab#cd%ef@'))
 
 
 

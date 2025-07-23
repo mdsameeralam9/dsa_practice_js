@@ -456,6 +456,17 @@ console.log(getSubstrings("aab", 2));   // Output: ["aa", "ab"]
 console.log(getSubstrings("aabc", 2));  // Output: ["aa", "ab", "bc"]
 console.log(getSubstrings("abc", 1));   // Output: ["a", "b", "c"]
 
+// third approach
+function findSubString(str, n){
+  let result = new Set();
+  for(let i=0; i<=str.length-n; i++){
+    let subStr = str.slice(i, n+i);
+    result.add(subStr);
+  }
+  return Array.from(result);
+}
+
+console.log(findSubString("abc", 1))
 
 // second approach
 function getSubstrings(input, length) {
