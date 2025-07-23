@@ -72,3 +72,39 @@ function fabinachi(till=10){
  return arr
 }
 console.log(fabinachi())
+
+//generateRandomNumber
+function generateRandomNumber(min, max){
+  return Math.floor(Math.random()*(max-min+1))+min
+}
+console.log(generateRandomNumber(10, 100))
+
+//generateRandomNumberOfNLength
+function generateRandomNumberOfNLength(n){
+  let randomValue = ''
+  let string = '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*';
+  for(let i=0; i<=n; i++){
+    let randomIndex = Math.floor(Math.random()*(string.length-1+1));
+    const char = string[randomIndex];
+    if(!randomValue.includes(char)){
+      randomValue += char;
+    }
+  }
+  return randomValue
+}
+
+console.log(generateRandomNumberOfNLength(10))
+
+// second approach
+function generateRandomString(length) {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    result += characters.charAt(randomIndex);
+  }
+  return result;
+}
+
+// Example usage:
+// const randomStr = generateRandomString(10); // generates a random string of length 10
