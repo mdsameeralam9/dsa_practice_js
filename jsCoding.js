@@ -1,6 +1,37 @@
-{/**
-3. generate random number
-*/}
+function checkPasswordStrength(password) {
+  // Initialize score
+  let score = 0;
+  
+    console.log("1",score);
+  // Check length
+  if (password.length >= 8) score += 1;
+  console.log("2",score);
+  if (password.length >= 12) score += 1;
+    console.log("3",score);
+  
+  // Check for different character types
+  if (/[A-Z]/.test(password)) score += 1; // Uppercase
+    console.log("4",score);
+  if (/[a-z]/.test(password)) score += 1; // Lowercase
+    console.log("5",score);
+  if (/[0-9]/.test(password)) score += 1; // Numbers
+    console.log("6",score);
+  if (/[^A-Za-z0-9]/.test(password)) score += 1; // Special characters
+  
+    console.log("7",score);
+  // Determine strength based on score
+  if (score >= 5) return "Strong";
+  if (score >= 3) return "Medium";
+  return "Weak";
+}
+
+// Example usage:
+//console.log(checkPasswordStrength("password"))
+//console.log(checkPasswordStrength("Password123"))
+console.log(checkPasswordStrength("P@ssw0rd123!"))
+// checkPasswordStrength("password") // "Weak"
+// checkPasswordStrength("Password123") // "Medium"
+// checkPasswordStrength("P@ssw0rd123!") // "Strong"
 
 
 
