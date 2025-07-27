@@ -61,3 +61,17 @@ function checkPasswordStrength(password) {
 // checkPasswordStrength("password") // "Weak"
 // checkPasswordStrength("Password123") // "Medium"
 // checkPasswordStrength("P@ssw0rd123!") // "Strong"
+
+// second approach
+function generateRandomString(length) {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    result += characters.charAt(randomIndex);
+  }
+  return result;
+}
+
+// Example usage:
+// const randomStr = generateRandomString(10); // generates a random string of length 10
