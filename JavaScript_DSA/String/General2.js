@@ -62,6 +62,23 @@ function checkPasswordStrength(password) {
 // checkPasswordStrength("Password123") // "Medium"
 // checkPasswordStrength("P@ssw0rd123!") // "Strong"
 
+//generateRandomNumberOfNLength
+function generateRandomNumberOfNLength(n){
+  let randomValue = ''
+  let string = '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*';
+  for(let i=0; i<=n; i++){
+    let randomIndex = Math.floor(Math.random()*(string.length-1+1));
+    const char = string[randomIndex];
+    if(!randomValue.includes(char)){
+      randomValue += char;
+    }
+  }
+  return randomValue
+}
+
+console.log(generateRandomNumberOfNLength(10))
+
+
 // second approach
 function generateRandomString(length) {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
