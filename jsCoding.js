@@ -50,12 +50,6 @@ https://www.npmjs.com/package/otp-input-react
 */}
 
 
-function finDublicate(strng){
-  
-}
-
-console.log(finDublicate('ab#cd%ef@'))
-
 
 
 
