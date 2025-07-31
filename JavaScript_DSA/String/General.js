@@ -188,7 +188,7 @@ function rotateString(str, rotateFrom){
 }
 function rotateString(str, len){
   str = str.split("")
-  let i =0;
+  let i = 0;
   while(i < len){
     str.unshift(str.pop())
     i++
