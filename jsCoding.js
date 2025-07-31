@@ -1,85 +1,44 @@
-// Optimized number functions
-
 {/**
-🧠 Why stop at Math.sqrt(val)?
-Because every factor above the square root has a matching factor below it:
-
-Number	  Factor        Pair
-25	     (1, 25),      (5, 5)
-49	     (1, 49),      (7, 7)
-    
+ 1. p_anagram
+ 2. longestSubStringWithoutRepeatingCharacter
+ 3. getCharDistance
+ 4. frequencyCount or compressString
+ 5. countLetterRepeats
+ 6. Rotate string
+ 7. validParenthesis
+ 8. removeRepeat word from sentence
+ 9. longestRepeatCharacterFromString
+ 10. longestPalindromeBrute
+ 11. find all anagrams of a pattern in a given string
+ 12. splitPath split string and seprate char
 */}
 
-function prime(val){
-    if (val < 2) return false;
-    if (val === 2) return true;
-    if (val % 2 === 0) return false; // this is for even number before loop it return the value;
-    for (let i = 3; i<=Math.sqrt(val); i+=2) {
-        // i+=2 => increment BY 2 beacuse except 2 all prime is odd number
-        // i = 3 => start from 3 , 2 is already return prime and only even;
-        // i <= Math.sqrt(val) =>  ABOVE 
-        // i*i <= val => either double the i to compare and decrease loop and same as . 
-        if (val % i === 0) {
-           return false
-        };
+
+function include(str, val){
+    let isIncluded = false;
+    for(const char of str){
+        if(char === val){
+           isIncluded = true;
+           return isIncluded;
+        }
     }
-    return true;
+    return isIncluded
 }
 
-console.log(prime(25));
-console.log(prime(25));
-console.log(prime(49));
+function isP_anagram(str){
+    // all alphabet must include in this str
+    str = str.toLowerCase();
+    let uniqStore = new Set();
+    let alphabets = 'abcdefghijklmnopqrstuvwxyz';
+    for(const char of alphabets){
+        if(!str.includes(char)){
+            uniqStore.add(char)
+        }
+    };
 
-function isPrime(val) {
-    if (val < 2) return false;
-    if (val === 2) return true;
-    if (val % 2 === 0) return false;
-    
-    for (let i = 3; i * i <= val; i += 2) {
-        console.log(i)
-        if (val % i === 0) return false;
-    }
-    return true;
-}
-
-//console.log(isPrime(29));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function isComposite(val) {
-    return val > 3 && !isPrime(val);
+    console.log(uniqStore, Array.from(uniqStore))
+    return uniqStore.size === 26;
 }
 
 
-function getPrimeTillValue(value) {
-    const primes = [];
-    for (let i = 2; i <= value; i++) {
-        if (isPrime(i)) primes.push(i);
-    }
-    return primes;
-}
-
-function getCompositeTillValue(value) {
-    const composites = [];
-    for (let i = 4; i <= value; i++) {
-        if (isComposite(i)) composites.push(i);
-    }
-    return composites;
-}
-
-
-//console.log(getCompositeTillValue(10));
+console.log(isP_anagram("")) //dog
