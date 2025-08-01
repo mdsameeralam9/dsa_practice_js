@@ -1,3 +1,56 @@
+// pollyfill array Includes
+if (!Array.prototype.includes) {
+    Array.prototype.includes = function (searchElement, fromIndex) {
+        if (this == null) {
+            throw new TypeError('"this" is null or not defined');
+        }
+
+        const o = Object(this);
+        //unsigned right shift operator (>>>) to ensure that len is a non-negative integer.
+        const len = o.length >>> 0;
+
+        if (len === 0) {
+            return false;
+        }
+
+        const n = fromIndex | 0;
+        let k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+
+        while (k < len) {
+            if (o[k] === searchElement || (typeof o[k] === 'number' && typeof searchElement === 'number' && isNaN(o[k]) && isNaN(searchElement))) {
+                return true;
+            }
+            k++;
+        }
+
+        return false;
+    };
+}
+
+// join pollyfill
+if (!Array.prototype.join) {
+  Array.prototype.join = function(separator) {
+    if (this == null) {
+      throw new TypeError('"this" is null or not defined');
+    }
+
+    const arr = Object(this);
+    const len = arr.length >>> 0;
+    separator = separator === undefined ? ',' : String(separator);
+
+    let result = '';
+    for (let i = 0; i < len; i++) {
+      if (i > 0) result += separator;
+      if (arr[i] !== undefined && arr[i] !== null) {
+        result += arr[i];
+      }
+    }
+
+    return result;
+  };
+}
+
+
 // pop
 if (!Array.prototype.pop) {
   Array.prototype.pop = function () {
@@ -106,57 +159,4 @@ const colors = ["red", "green", "blue"];
 const iterator = colors.entries();
 for (const [index, color] of iterator) {
   console.log(index, color);
-}
-
-
-// pollyfill array Includes
-if (!Array.prototype.includes) {
-    Array.prototype.includes = function (searchElement, fromIndex) {
-        if (this == null) {
-            throw new TypeError('"this" is null or not defined');
-        }
-
-        const o = Object(this);
-        //unsigned right shift operator (>>>) to ensure that len is a non-negative integer.
-        const len = o.length >>> 0;
-
-        if (len === 0) {
-            return false;
-        }
-
-        const n = fromIndex | 0;
-        let k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
-
-        while (k < len) {
-            if (o[k] === searchElement || (typeof o[k] === 'number' && typeof searchElement === 'number' && isNaN(o[k]) && isNaN(searchElement))) {
-                return true;
-            }
-            k++;
-        }
-
-        return false;
-    };
-}
-
-// join pollyfill
-if (!Array.prototype.join) {
-  Array.prototype.join = function(separator) {
-    if (this == null) {
-      throw new TypeError('"this" is null or not defined');
-    }
-
-    const arr = Object(this);
-    const len = arr.length >>> 0;
-    separator = separator === undefined ? ',' : String(separator);
-
-    let result = '';
-    for (let i = 0; i < len; i++) {
-      if (i > 0) result += separator;
-      if (arr[i] !== undefined && arr[i] !== null) {
-        result += arr[i];
-      }
-    }
-
-    return result;
-  };
 }
