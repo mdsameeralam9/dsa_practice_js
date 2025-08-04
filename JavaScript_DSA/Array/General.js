@@ -10,7 +10,7 @@
 9. firstNonRepeatingItem
 10. find missing Number 
 11. removeDublicate 
-12.intersectionOfArray
+12. intersectionOfArray
 13. groupAnagrams
 14. merge array from object from two array with unique Object id
 15. chunkArray

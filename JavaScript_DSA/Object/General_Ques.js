@@ -216,6 +216,25 @@ function getStringFromObject(obj) {
   return str;
 }
 
+function getObjFromString(str){
+  const splittedValue = str.split(".");
+  let result = {}
+ 
+  for(let i=splittedValue.length-2; i >=0; i--){
+    const key = splittedValue[i];
+    const tempObj = {}
+    if(i === splittedValue.length-2){
+      const value = splittedValue.at(-1);
+      tempObj[key] = value;
+      result = {...tempObj}
+    } else {
+      tempObj[key] = {...result}
+      result = {...tempObj}
+    }
+  }
+  return result
+}
+
 console.log(
   getStringFromObject({
     a: {
