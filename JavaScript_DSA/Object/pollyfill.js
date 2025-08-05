@@ -27,7 +27,6 @@ function myStringify(value) {
   return undefined; // for functions, undefined, symbols
 }
 
-
 //2. Object.assign 
 function objectAssign(target, ...restObject){
     if(target === null || target === undefined) throw new Error(`cannot convet null or undefined to object`);
